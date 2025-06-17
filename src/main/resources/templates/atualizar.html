@@ -1,148 +1,161 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Cadastro</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta charset="UTF-8">
+    <title>Atualizar Cliente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
 
-        h1 {
-            margin-bottom: 20px;
-        }
+body {
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100%;
-        }
+form {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        input {
-            padding: 8px;
-            margin-bottom: 5px;
-            border-radius: 6px;
-            border: 1px solid black;
-        }
+form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: cornflowerblue;
+}
 
-        form input, form textarea {
-            padding: 8px;
-            min-width: 300px;
-        }
+form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
 
-        form textarea {
-            border-radius: 6px;
-            border: 1px solid black;
-        }
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
-        form div {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-        }
+input, textarea, button {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
 
-        form input[type=submit] {
-            background-color: cornflowerblue;
-            min-width: 300px;
-            padding: 8px;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
 
-        form input[type=submit]:hover {
-            background-color: darkblue;
-        }
+input[type="submit"], button {
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
 
-        form a {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: cornflowerblue;
-            text-decoration: none;
-            font-size: 14px;
-        }
+input[type="submit"]:hover, button:hover {
+    background-color: darkblue;
+}
 
-        form a:hover {
-            text-decoration: underline;
-        }
+a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
+    color: cornflowerblue;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    form {
+        margin: 10px;
+        padding: 20px;
+    }
+
+    input, textarea, button {
+        font-size: 13px;
+    }
+}
+
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="form-box">
-        <h1>Sistema de Cadastro</h1>
+    <form th:action="@{'/atualizar/' + ${cliente.id}}" th:object="${cliente}" method="post">
+        <div>
+            <label>Nome</label>
+            <input type="text" th:field="*{nome}" required>
+        </div>
 
-        <form th:action="@{'/atualizar/' + ${id}}" method="post" th:object="${cliente}">
-            <div>
-                <label>Nome</label>
-                <input type="text" th:field="*{nome}" placeholder="Digite seu nome" required><br>
-            </div>
+        <div>
+            <label>CPF</label>
+            <input type="text" th:field="*{cpf}" id="cpf" maxlength="14" oninput="formatarCPF(this)" required>
+        </div>
 
-            <div>
-                <label>CPF</label>
-                <input type="text" th:field="*{cpf}" maxlength="14" id="cpf" required oninput="formatarCPF(this)"
-                       placeholder="Digite seu CPF"><br>
-            </div>
+        <div>
+            <label>Celular</label>
+            <input type="tel" th:field="*{celular}" id="telefone" maxlength="15" placeholder="(XX) XXXXX-XXXX" required>
+        </div>
 
-            <div>
-                <label>Celular</label>
-                <input type="tel" id="telefone" placeholder="(XX) XXXXX-XXXX" maxlength="15" required
-                       pattern="\(\d{2}\) \d{4,5}-\d{4}" th:field="*{celular}"><br>
-            </div>
+        <div>
+            <label>CEP</label>
+            <input type="text" th:field="*{cep}" id="cep" maxlength="9" placeholder="Digite o CEP" required>
+            <button type="button" onclick="buscarEndereco()">Buscar Endereço</button>
+        </div>
 
-            <div>
-                <label>Endereço</label>
-                <textarea th:field="*{endereco}" required placeholder="Digite seu endereço"></textarea><br>
-            </div>
+        <div>
+            <label>Logradouro</label>
+            <input type="text" th:field="*{logradouro}" id="logradouro" required>
+        </div>
 
-            <div>
-                <input type="submit" value="Atualizar" name="atualizar">
-            </div>
+        <div>
+            <label>Bairro</label>
+            <input type="text" th:field="*{bairro}" id="bairro" required>
+        </div>
 
-            <div>
-                <a th:href="@{/}">Voltar para index</a>
-            </div>
-        </form>
-    </div>
+        <div>
+            <label>Cidade</label>
+            <input type="text" th:field="*{cidade}" id="cidade" required>
+        </div>
+
+        <div>
+            <label>Estado</label>
+            <input type="text" th:field="*{estado}" id="estado" required>
+        </div>
+
+        <div>
+            <label>Complemento</label>
+            <input type="text" th:field="*{complemento}" id="complemento">
+        </div>
+
+        <input type="submit" value="Atualizar">
+        <a th:href="@{/}">Voltar</a>
+    </form>
 </div>
 
 <script>
-    const telefoneInput = document.getElementById('telefone');
-
-    telefoneInput.addEventListener('input', (e) => {
-        let input = e.target.value;
-
-        // Remove tudo que não for número
-        input = input.replace(/\D/g, '');
-
-        // Adiciona parênteses no DDD
-        if (input.length > 0) input = `(${input}`;
-        if (input.length > 3) input = `${input.slice(0, 3)}) ${input.slice(3)}`;
-        // Adiciona hífen no número
-        if (input.length > 10) input = `${input.slice(0, 10)}-${input.slice(10, 14)}`;
-
-        // Limita o tamanho
-        if (input.length > 15) input = input.slice(0, 15);
-
-        e.target.value = input;
-    });
-
     function formatarCPF(input) {
-        // Remove tudo que não é número
         let cpf = input.value.replace(/\D/g, '');
-
-        // Limita ao máximo de 11 dígitos
         cpf = cpf.substring(0, 11);
-
-        // Adiciona a máscara (###.###.###-##)
         if (cpf.length > 6) {
             input.value = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
         } else if (cpf.length > 3) {
@@ -150,6 +163,38 @@
         } else {
             input.value = cpf;
         }
+    }
+
+    document.getElementById("telefone").addEventListener("input", function(e) {
+        let input = e.target.value.replace(/\D/g, '');
+        if (input.length > 0) input = `(${input}`;
+        if (input.length > 3) input = `${input.slice(0, 3)}) ${input.slice(3)}`;
+        if (input.length > 10) input = `${input.slice(0, 10)}-${input.slice(10, 14)}`;
+        if (input.length > 15) input = input.slice(0, 15);
+        e.target.value = input;
+    });
+
+    function buscarEndereco() {
+        const cep = document.getElementById('cep').value.replace(/\D/g, '');
+        if (cep.length !== 8) {
+            alert('CEP inválido');
+            return;
+        }
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.erro) {
+                    alert("CEP não encontrado");
+                    return;
+                }
+                document.getElementById('logradouro').value = data.logradouro;
+                document.getElementById('bairro').value = data.bairro;
+                document.getElementById('cidade').value = data.localidade;
+                document.getElementById('estado').value = data.uf;
+                document.getElementById('complemento').value = data.complemento;
+            })
+            .catch(() => alert("Erro ao buscar CEP"));
     }
 </script>
 

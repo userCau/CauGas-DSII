@@ -7,5 +7,5 @@ import com.bd.sitebd.model.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-    // Métodos de busca personalizados podem ser adicionados aqui se necessário
+    
 }

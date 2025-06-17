@@ -16,8 +16,3 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
-  sql:
-    init:
-      schema-locations: classpath:schema-postgresql.sql
-      mode: always

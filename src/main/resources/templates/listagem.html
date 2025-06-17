@@ -13,7 +13,6 @@
             box-sizing: border-box;
         }
 
-        /* Corpo da página */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f9;
@@ -27,7 +26,6 @@
             margin-bottom: 20px;
         }
 
-        /* Estilizando a tabela */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -59,7 +57,6 @@
             background-color: #f2f2f2;
         }
 
-        /* Estilizando os links */
         a {
             color: #007bff;
             text-decoration: none;
@@ -69,7 +66,6 @@
             text-decoration: underline;
         }
 
-        /* Botão de Apagar */
         input[type="submit"] {
             background-color: #dc3545;
             color: white;
@@ -85,7 +81,6 @@
             background-color: #c82333;
         }
 
-        
         .back-link {
             display: block;
             text-align: center;
@@ -99,7 +94,6 @@
             text-decoration: underline;
         }
 
-        
         @media (max-width: 768px) {
             table {
                 width: 100%;
@@ -110,7 +104,6 @@
                 padding: 8px;
             }
         }
-
     </style>
 </head>
 <body>
@@ -124,7 +117,12 @@
                 <th>Nome</th>
                 <th>CPF</th>
                 <th>Celular</th>
-                <th>Endereço</th>
+                <th>CEP</th>
+                <th>Logradouro</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Complemento</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -134,7 +132,12 @@
                 <td th:text="${cliente.nome}"></td>
                 <td th:text="${cliente.cpf}"></td>
                 <td th:text="${cliente.celular}"></td>
-                <td th:text="${cliente.endereco}"></td>
+                <td th:text="${cliente.cep}"></td>
+                <td th:text="${cliente.logradouro}"></td>
+                <td th:text="${cliente.bairro}"></td>
+                <td th:text="${cliente.cidade}"></td>
+                <td th:text="${cliente.estado}"></td>
+                <td th:text="${cliente.complemento}"></td>
                 <td>
                     <a th:href="@{'/atualizar/' + ${cliente.id}}">Atualizar</a> |
                     <form th:action="@{'/deletar/' + ${cliente.id}}" method="post" style="display:inline;">
