@@ -5,12 +5,89 @@
     <title>Login - CauGás</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <style>
-        a {
-            color: black;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form div {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        p a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+    <div class="login-container">
     <h2>Login</h2>
 
     <form th:action="@{/login}" method="post">
@@ -31,7 +108,12 @@
         Não tem uma conta? <a th:href="@{/register}">Cadastre-se aqui</a>
     </p>
 
+     <p>
+         <a th:href="@{/}">Voltar</a>
+    </p>
+
     <p th:if="${param.error}">Usuário ou senha inválidos!</p>
-    <p th:if="${param.logout}">Você saiu com sucesso.</p>
+    
+    </div>
 </body>
 </html>
