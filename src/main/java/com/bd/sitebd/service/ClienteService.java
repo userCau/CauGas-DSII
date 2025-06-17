@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bd.sitebd.model.Cliente;
-import com.bd.sitebd.repositories.ClienteRepository;
+import com.bd.sitebd.repository.ClienteRepository;
 
 import java.util.List;
 

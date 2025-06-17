@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuário - CauGás</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h2>Cadastro de Usuário</h2>
+
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <div>
+            <label>Nome de usuário:</label>
+            <input type="text" th:field="*{username}" required />
+        </div>
+        <div>
+            <label>Senha:</label>
+            <input type="password" th:field="*{password}" required />
+        </div>
+        <div>
+            <label>Tipo de Usuário:</label>
+            <select th:field="*{role}">
+                <option value="USER">Usuário Comum</option>
+                <option value="ADMIN">Administrador</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Cadastrar</button>
+        </div>
+    </form>
+
+    <p>
+        Já tem uma conta? <a th:href="@{/login}">Faça login</a>
+    </p>
+</body>
+</html>

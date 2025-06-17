@@ -1,4 +1,4 @@
-package com.bd.sitebd.repositories;
+package com.bd.sitebd.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

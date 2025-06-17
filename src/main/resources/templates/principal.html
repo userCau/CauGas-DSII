@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org">
+<html xmlns="http://www.thymeleaf.org"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -12,12 +14,31 @@
         <nav>
             <a class="logo" href="">CauGás</a>
             <ul class="nav-list">
-                <li><a th:href="@{/cadastro}">Pedir gás</a></li>
-                <li><a th:href="@{/listagem}">Listar Cliente</a></li>
+
+                <li sec:authorize="hasRole('ADMIN') or hasRole('USER')"
+                ><a th:href="@{/cadastro}">Pedir gás</a></li>
+
+                <li sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/listagem}">Listar Cliente</a>
+            </li>
+
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}">Login</a>
+            </li>
+
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/register}">Cadastrar Usuário</a>
+            </li>
+
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/logout}">Logout</a>
+            </li>
+
             </ul>
         </nav>
+
         <main>
-            <div class="cgas" >
+            <div class="cgas">
                 <div class="acab">
                     <h1>ACABOU O GÁS? </h1>
                     <h2>Não se preocupe! a CauGás está sempre próxima de você!</h2>
@@ -28,31 +49,27 @@
                 </div>
             </div>
 
-        <section class="horarios">
-            <div class="container">
-                <h3>Horário de Atendimento</h3>
-                <div class="horario-grid">
-                    <div>
-                        <h4>Segunda a Sexta</h4>
-                        <p>8:00 - 20:00</p>
-                    </div>
-                    <div>
-                        <h4>Sábados</h4>
-                        <p>8:00 - 18:00</p>
-                    </div>
-                    <div>
-                        <h4>Domingos e feriados</h4>
-                        <p>8:00 - 16:00</p>
+            <section class="horarios">
+                <div class="container">
+                    <h3>Horário de Atendimento</h3>
+                    <div class="horario-grid">
+                        <div>
+                            <h4>Segunda a Sexta</h4>
+                            <p>8:00 - 20:00</p>
+                        </div>
+                        <div>
+                            <h4>Sábados</h4>
+                            <p>8:00 - 18:00</p>
+                        </div>
+                        <div>
+                            <h4>Domingos e feriados</h4>
+                            <p>8:00 - 16:00</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        </div>
         </main>
     </header>
-
-    
-    
 </body>
 </html>
