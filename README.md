@@ -61,6 +61,19 @@
 - **Permissão:** Apenas `ADMIN`
 - **Descrição:** Exclui um cliente específico.
 
+-##  Acesso Negado
+
+- **Rota:** `/acesso-negado`
+- **Método:** GET
+- **Permissão:** Automática via Spring Security
+- **Descrição:** Página de erro para usuários sem permissão.
+
+- ## Logout
+
+- **Rota:** `/logout-sucesso`
+- **Método:** GET
+- **Permissão:** Automática via Spring Security
+- **Descrição:** Pagina de confirmação do logout
 ---
 
 
