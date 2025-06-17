@@ -9,7 +9,7 @@
 
 ---
 
-## 👤 Registro de Usuário
+##  Registro de Usuário
 
 - **Rota:** `/register`
 - **Método:** GET / POST
@@ -27,7 +27,7 @@
 
 ---
 
-## 📦 Cadastro de Endereço / Cliente
+##  Cadastro de Endereço / Cliente
 
 - **Rota:** `/cadastro`
 - **Método:** GET / POST
