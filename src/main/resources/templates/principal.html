@@ -27,7 +27,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             </li>
 
             <li sec:authorize="!isAuthenticated()">
-                <a th:href="@{/register}">Cadastrar Usuário</a>
+                <a th:href="@{/register}">Cadastrar</a>
             </li>
 
             <li sec:authorize="isAuthenticated()">
@@ -35,7 +35,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             </li>
 
             </ul>
+
+            
         </nav>
+        
 
         <main>
             <div class="cgas">

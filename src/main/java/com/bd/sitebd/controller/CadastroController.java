@@ -66,9 +66,8 @@ public class CadastroController {
     }
 
     @GetMapping("/acesso-negado")
-        public String acessoNegado(RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("erro", "Você precisa estar logado para acessar essa página!");
-        return "redirect:/";
+        public String acessoNegado() {
+        return "/acesso-negado";
 }
 
 }
