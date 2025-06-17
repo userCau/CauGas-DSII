@@ -10,4 +10,12 @@ public class LoginController {
     public String login() {
         return "login";
     }
-}
+
+
+
+    @GetMapping("/logout-sucesso")
+    public String logoutSuccess() {
+        return "logout-sucesso"; // Nome do arquivo HTML (ex: logout-sucesso.html em templates)
+    }
+
+    }

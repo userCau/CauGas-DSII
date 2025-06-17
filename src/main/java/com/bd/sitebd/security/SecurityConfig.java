@@ -44,7 +44,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
         .permitAll()
     )
     .logout(logout -> logout
-        .logoutSuccessUrl("/")
+        .logoutSuccessUrl("/logout-sucesso")
         .permitAll()
     )
     .csrf(csrf -> csrf.disable()) 
